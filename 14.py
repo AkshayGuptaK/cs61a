@@ -1,9 +1,31 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<html><head>
-<title>404 Not Found</title>
-</head><body>
-<h1>Not Found</h1>
-<p>The requested URL /~cs61a/fa18/assets/slides/014.py was not found on this server.</p>
-<hr>
-<address>Apache/2.4.7 (Ubuntu) Server at inst.eecs.berkeley.edu Port 443</address>
-</body></html>
+def make_withdraw(balance):
+    """Return a withdraw function with a starting balance."""
+    def withdraw(amount):
+        nonlocal balance
+        if amount > balance:
+            return 'Insufficient funds'
+        balance = balance - amount
+        return balance
+    return withdraw
+
+def make_withdraw_list(balance):
+    b = [balance]
+    def withdraw(amount):
+        if amount > b[0]:
+            return 'Insufficient funds'
+        b[0] = b[0] - amount
+        return b[0]
+    return withdraw
+
+def f(x):
+    x = 4
+    def g(y):
+        def h(z):
+            nonlocal x
+            x = x + 1
+            return x + y + z
+        return h
+    return g
+a = f(1)
+b = a(2)
+b(3) + b(4)
