@@ -1,0 +1,8 @@
+# Ignore vs code
+.vscode/
+
+# Ignore parsing files
+parse/
+
+# Ignore pycache
+__pycache__/
